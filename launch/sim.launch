@@ -12,6 +12,8 @@
     <arg name="world_name" value="$(find hokuyo_sim)/worlds/$(arg world_name)" />
   </include>
 
+  <node name="laser_plotter" type="laser_plotter.py" pkg="hokuyo_sim" />
+
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hokuyo_sim)/rviz/conf.rviz" />
 
 </launch>

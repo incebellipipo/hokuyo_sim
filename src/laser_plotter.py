@@ -20,6 +20,8 @@ class Laser:
         self.laser_data = msg
 
     def draw(self):
+        if self.laser_data is None:
+            return
         a = self.laser_data.angle_min
         x = []
         y = []

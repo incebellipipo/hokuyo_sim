@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="laser_name" default="hokuyo" />
+
+  <param 
+    name="robot_description" 
+    command="$(find xacro)/xacro --inorder '$(find hokuyo_sim)/xacro/robot.xacro'" 
+  />
+
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+    respawn="false" output="screen" 
+    args="-urdf -model $(arg laser_name) -param robot_description -x 0.0 -y 0.0 -z 0.01" />
+
+  <node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="30.0" />
+    <param name="tf_prefix" type="string" value="$(arg laser_name)" />
+  </node>
+
+</launch>

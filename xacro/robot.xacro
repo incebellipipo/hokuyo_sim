@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hokuyo" >
+
+  <link name="hokuyo" />
+
+  <!-- Import RViz Colors !-->
+  <xacro:include filename="$(find hokuyo_sim)/xacro/materials.xacro" />
+
+  <xacro:include filename="$(find hokuyo_sim)/xacro/laser/hokuyo.xacro" />
+  <xacro:laser name="laser" parent="hokuyo" xyz="0.0 0.0 0.10" rpy="0 0 0" 
+    meshes="package://hokuyo_sim/meshes/laser" />
+
+</robot>

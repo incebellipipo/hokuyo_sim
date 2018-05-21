@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="laser_name" default="hokuyo" />
+  <arg name="world_name" default="emtpy.world" /> <!-- This files is relative to $(find hokuyo_sim), just select the file name, really... !-->
+
+  <include file="$(find hokuyo_sim)/launch/include/spawn_lidar.launch.xml" >
+    <arg name="laser_name" value="$(arg laser_name)" />
+  </include>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find hokuyo_sim)/worlds/$(arg world_name)" />
+  </include>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hokuyo_sim)/rviz/conf.rviz" />
+
+</launch>

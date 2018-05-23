@@ -14,8 +14,7 @@ class Laser:
         self.laser_sub = rospy.Subscriber("/hokuyo/laser/scan", LaserScan, self.laser_cb)
         
         self.fig, self.ax = plt.subplots(1, 1)         
-
-
+    
     def laser_cb(self, msg):
         self.laser_data = msg
 
@@ -31,6 +30,10 @@ class Laser:
             y.append(r)
             a += self.laser_data.angle_increment
         self.ax.clear()
+        self.ax.set_xlabel('Angle in Degrees')
+        self.ax.set_ylabel('Distance in Meters')
+        self.ax.xaxis.label.set_size(18)
+        self.ax.yaxis.label.set_size(18)
         self.ax.plot(x, y)
         self.fig.canvas.draw()
         self.fig.canvas.flush_events()
